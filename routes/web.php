@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::resource('child', 'ChildController');
 // Multi step registration routes
-Route::get('/home','HomeController@index');
-Route::get('/register-step1','ChildController@registerStep1')->name('step1');
+#Route::get('/home','HomeController@index');
+Route::get('/','ChildController@registerStep1')->name('step1');
 Route::get('/register-step2','ChildController@registerStep2')->name('step2');
 Route::get('/child/register-step3','ChildController@registerStep3')->name('step3');
 
