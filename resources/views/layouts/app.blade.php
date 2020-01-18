@@ -11,6 +11,7 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{url('regform/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('regform/css/bootstrap.min.css')}}">
 </head>
     <body>
 

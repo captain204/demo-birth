@@ -5,8 +5,23 @@
         <header class="masthead" style="background-image:('{{url('blog/img/home-bg.jpg')}}'')">
         <img src="{{url('regform/images/signup-img.jpg')}}" alt="">
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
+    @endif
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            {{$message}}
+        </div>
+    @endif
     <div class="signup-form">
-        <form method="POST" class="register-form" id="register-form">
+        <form method="POST" action="/postregister-step1" class="register-form" id="register-form">
+            {{ csrf_field()}}
             <h2>Birth Registration Form <b>Step 1/2</b></h2>
             <h2 class="text-center">Child Information</h2>
             <div class="form-row">

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Child;
 use Illuminate\Http\Request;
 
@@ -32,10 +32,9 @@ class ChildController extends Controller
     {
         return view('child\step_one');
     }
-    public function registerStep2()
+    public function registerStep2(Request $request)
     {
-        $child = $request->session()->get('child');
-        return view('child\step_two',compact('child',$child));
+        return view('child\step_two');
     }
    
     public function postregisterStep1(Request $request)
@@ -50,21 +49,40 @@ class ChildController extends Controller
             'eye_color' => 'required',
             'sex'=> 'required',
         ]);
-        if(empty($request->session()->get('child'))){
-
-            $child = new Child();
-            $child->fill($data);
-            $request->session()->put('child',$child);
-        }else{
-            $child = $request->session()->get('child');
-            $child->fill($data);
-            $request->session()->put('child',$child);
-        }
-        return redirect('/child/register-step2');
+       
+        $id = DB::table('children')->insertGetId($data);
+        $request->session()->put('id',$id);
+        return redirect('/register-step2');
     }
-    public function postregisterStep2()
+    public function postregisterStep2(Request $request)
     {
-        $child = $request->session()->get('child');
+        $id = $request->session()->get('id');
+        #dd($id);
+        $data = $request->validate([
+            'f_firstname' =>'required',
+            'f_surname' => 'required',
+            'f_national_id' =>'required|numeric',
+            'm_maiden' =>'required',
+            'm_firstname' => 'required',
+            'm_lastname' => 'required',
+            'm_national_id' => 'required|numeric',
+            'nationality' => 'required',
+            'address' => 'required',
+        ]);
+
+        #dd($data);
+        #echo $id;
+        #DB::table('users')->where('id', 1) ->update(['votes' => 1]);
+         DB::table('children')->where('id', $id)
+                    ->update(['f_firstname'=>$data['f_firstname'],'f_surname'=>$data['f_surname'],
+                    'f_national_id'=>$data['f_national_id'],
+                    'm_maiden'=>$data['m_maiden'],
+                    'm_firstname'=>$data['m_firstname'],
+                    'm_lastname'=>$data['m_lastname'],
+                    'm_national_id'=>$data['m_national_id'],
+                    'nationality'=>$data['nationality'],
+                    'address'=>$data['address'],]);
+        return redirect('/register-step1')->with('success',"Thank you for registering your child");
     }
    
 

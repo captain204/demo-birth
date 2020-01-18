@@ -23,15 +23,15 @@ class CreateChildrenTable extends Migration
             $table->integer('child_weight');
             $table->string('eye_color');
             $table->string('sex');
-            $table->string('f_firstname');
-            $table->string('f_surname');
-            $table->string('f_national_id');
-            $table->string('m_maiden');
-            $table->string('m_firstname');
-            $table->string('m_lastname');
-            $table->string('m_national_id');
-            $table->string('nationality');
-            $table->string('address');
+            $table->string('f_firstname')->nullable();
+            $table->string('f_surname')->nullable();
+            $table->string('f_national_id')->nullable();
+            $table->string('m_maiden')->nullable();
+            $table->string('m_firstname')->nullable();
+            $table->string('m_lastname')->nullable();
+            $table->string('m_national_id')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

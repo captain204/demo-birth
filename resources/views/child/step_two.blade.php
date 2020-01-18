@@ -5,8 +5,18 @@
         <header class="masthead" style="background-image:('{{url('blog/img/home-bg.jpg')}}'')">
         <img src="{{url('regform/images/signup-img.jpg')}}" alt="">
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="signup-form">
-        <form method="POST" class="register-form" id="register-form">
+        <form method="POST" action="/postregister-step2" class="register-form" id="register-form">
+            {{ csrf_field()}}
             <h2>Birth Registration Form <b>Step 2/2</b></h2>
             <h2 class="text-center">Parent Information</h2>
             <div class="form-group">
@@ -40,6 +50,10 @@
             <div class="form-group">
                 <label for="nationality">Nationality</label>
                 <input type="text" name="nationality" id="nationality" placeholder="Nationality" required/>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address" placeholder="Address" required/>
             </div>
             <div class="form-submit">
                 <input type="submit" value="Submit" class="submit" name="submit" id="submit" />
