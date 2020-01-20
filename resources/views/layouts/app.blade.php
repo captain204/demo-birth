@@ -7,11 +7,11 @@
     <title>Birth Registration Form</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{asset('regform/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{'regform/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="{{asset('regform/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('regform/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{'regform/css/style.css')}}">
+    <link rel="stylesheet" href="{{'regform/css/bootstrap.min.css')}}">
 </head>
     <body>
 
