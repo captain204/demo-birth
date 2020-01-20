@@ -30,11 +30,11 @@ class ChildController extends Controller
     }
     public function registerStep1()
     {
-        return view('child\step_one');
+        return view('child.step_one');
     }
     public function registerStep2(Request $request)
     {
-        return view('child\step_two');
+        return view('child.step_two');
     }
    
     public function postregisterStep1(Request $request)
