@@ -82,7 +82,7 @@ class ChildController extends Controller
                     'm_national_id'=>$data['m_national_id'],
                     'nationality'=>$data['nationality'],
                     'address'=>$data['address'],]);
-        return redirect('/register-step1')->with('success',"Thank you for registering your child");
+        return redirect('/')->with('success',"Thank you for registering your child");
     }
    
 
